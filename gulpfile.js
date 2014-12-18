@@ -30,6 +30,11 @@ gulp.task('sass', function() {
     .pipe(reload({ stream: true}));
 });
 
+gulp.task('fonts', function(){
+  gulp.src('src/fonts/**/*')
+    .pipe(gulp.dest('./app/static/css/fonts'));
+});
+
 gulp.task('reload', function() {
   gulp.src('./app/templates/*html')
     .pipe(reload({ stream: true}));
@@ -57,6 +62,7 @@ gulp.task('build', function(callback){
     'clean',
     'coffee',
     'sass',
+    'fonts',
     callback
   );
 });
