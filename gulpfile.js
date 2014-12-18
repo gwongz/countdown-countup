@@ -4,9 +4,9 @@ var sass = require('gulp-sass');
 var rename = require('gulp-rename');
 
 gulp.task('coffee', function() {
-  gulp.src('src/coffee/*.coffee', { read:false })
+  gulp.src('src/coffee/app.coffee', { read:false })
     .pipe(browserify({
-      transform: ['coffeeify'],
+      transform: ['coffee-reactify'],
       extensions: ['.coffee']
     }))
     .pipe(rename('app.js'))
