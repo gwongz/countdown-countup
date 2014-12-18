@@ -1,4 +1,4 @@
-
+$ = require 'jquery'
 $ -> 
   console.log 'Jquery ready'
 

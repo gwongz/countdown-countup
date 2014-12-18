@@ -1,9 +1,10 @@
+React = require 'react'
 
-React = require('react')
-
-AppLayer = React.createClass ->
+AppLayer = React.createClass 
   render: -> 
-    (div {}, ['This is my applayer'])
+    <div className="appLayer">
+      <p>This is my app layer.</p>
+    </div>
   
 
 React.render(
