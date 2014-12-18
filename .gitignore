@@ -1,7 +1,8 @@
 .DS_Store
 *.rdb
 .sass-cache
-build
+app/static/css/
+app/static/js/
 
 *.pyc
 node_modules
