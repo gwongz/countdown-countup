@@ -1,6 +1,8 @@
 .DS_Store
 *.rdb
 .sass-cache
+
+# compiled files
 app/static/css/
 app/static/js/
 

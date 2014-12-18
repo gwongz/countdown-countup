@@ -30,12 +30,18 @@ gulp.task('sass', function() {
     .pipe(reload({ stream: true}));
 });
 
+gulp.task('reload', function() {
+  gulp.src('./app/templates/*html')
+    .pipe(reload({ stream: true}));
+});
+
 gulp.task('serve', function() {
   browserSync({
     proxy: 'localhost:5000'
   });
   gulp.watch(paths.sass, ['sass']);
   gulp.watch(paths.coffee, ['coffee']);
+  gulp.watch('./app/templates/*html', ['reload']);
 
 });
 
