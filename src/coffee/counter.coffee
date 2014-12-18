@@ -5,6 +5,21 @@ CountdownForm = React.createClass
   handleSubmit: (e) ->
     console.log 'submitting countdown form'
     e.preventDefault()
+    title = this.refs.title.getDOMNode().value.trim()
+    occurs = this.refs.occurs.getDOMNode().value.trim()
+    date = Date.parse(occurs)
+
+    if date > new Date()
+      console.log 'this is a valid date'
+      this.props.onFormSubmit({title: title, occurs: date})
+
+    else 
+      this.refs.title.getDOMNode().value = '';
+      this.refs.occurs.getDOMNode().value = '';
+
+    
+      
+
 
   render: ->
     <form className="countForm" onSubmit={this.handleSubmit}>
@@ -12,7 +27,9 @@ CountdownForm = React.createClass
       <input type="text" ref="title" />
       <h1>When does it start?</h1>
       <input type="text" ref="occurs" />
-      <input type="submit" value="Begin count down"/>
+      <div className="submitDiv">
+        <input type="submit" value="Begin count down"/>
+      </div>
     </form>
 
 CountupForm = React.createClass
@@ -24,23 +41,34 @@ CountupForm = React.createClass
     <form className="countForm" onSubmit={this.handleSubmit}>
       <h1>What are you counting up from?</h1>
       <input type="text" ref="title" />
-      <h1>When did it happen?</h1>
+      <h1>When do you want to count up from?</h1>
       <input type="text" ref="occurs" />
-      <input type="submit" value="Begin counting" />
+      <div className="submitDiv">
+        <input type="submit" value="Begin counting" />
+      </div>
     </form>
 
 CountForm = React.createClass
+  handleFormSubmit: (data) ->
+    console.log 'in the form submit callback'
+    console.log('this is data.title')
+    console.log(data.title)
+    console.log 'and data.date'
+    console.log data.occurs
+  
   render: ->
     console.log 'rendering countform'
     if (this.props.countdown) 
       console.log 'countdown is ture'
-      countForm = <CountdownForm />
+      countForm = <CountdownForm onFormSubmit={this.handleFormSubmit}/>
     else
       console.log 'countdown is false'
-      countForm = <CountupForm />
+      countForm = <CountupForm onFormSubmit={this.handleFormSubmit}/>
     countForm
 
 CountBox = React.createClass
+ 
+
 
   render: ->
     <div className="countBox">
