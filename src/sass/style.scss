@@ -1,0 +1,77 @@
+$font-stack: Helvetica-Neue, Helvetica, sans-serif;
+$light-gray: #eee;
+$orange: rgb(213, 94, 34);
+$dark-gray: rgb(41,41,41);
+$red: rgb(192, 80, 79);
+
+
+@mixin input-placeholder($color) {
+  ::-webkit-input-placeholder {
+   color: $color;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+     color: $color;
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+     color: $color;
+  }
+
+  :-ms-input-placeholder {  
+     color: $color;
+  }
+
+}
+
+
+
+body {
+  background: cover;
+  /*background: url(images/F8.svg) no-repeat center center fixed;*/
+  background-size: cover;
+  font: 100% $font-stack;
+  font-weight: lighter;
+  background-color: $red;
+  color: $dark-gray;
+  h1 {
+    font-size: 56px;
+    text-align: center;
+  }
+}
+
+
+
+
+
+
+
+.countdownForm {
+  text-align:center;
+
+  input{
+    text-align:center;
+    outline: none;
+    cursor: auto;
+    color: $dark-gray;
+    border-radius: 2px;
+  }
+  
+  input[type=text], input[type=datetime]{
+    font-size: 32px;
+    background: rgba(255,255,255, 0.4);
+    border: 0;
+    border-bottom: 3px solid $dark-gray;
+    width: 17em;
+    line-height: 1.2em;
+    font-weight: bold;
+  }
+
+  @include input-placeholder($dark-gray);
+
+  input[type=submit]{
+    color: red;
+  }
+
+}
+
