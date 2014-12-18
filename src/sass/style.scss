@@ -17,7 +17,7 @@ $white: #fff;
 $black: #000;
 
 @mixin font-face($style-name, $file, $family, $category:"") {
-    $filepath: "fonts/" + $family + "/" + $file;
+    $filepath: "/fonts/" + $family + "/" + $file;
     @font-face {
         font-family: "#{$style-name}";
         src: url($filepath + ".eot");
@@ -36,8 +36,8 @@ $black: #000;
     }
 }
 
-@include font-face('Klinic', '../../fonts/KlinicSlabMedium', 'Klinic', 'serif');
-@include font-face('EdmondSans', '../../fonts/Edmondsans-Regular', 'EdmondSans', 'sans-serif');
+@include font-face('Klinic', 'KlinicSlabMedium', 'serif');
+@include font-face('EdmondSans', 'Edmondsans-Regular', 'EdmondSans', 'sans-serif');
 /*@include font-face('Klinic', '../fonts/KlinicSlabMedium.otf', 'normal', 'normal');*/
 
 $font-klinic: 'Klinic';
@@ -94,7 +94,7 @@ body {
 
 
 
-.countForm {
+.countForm, .timer {
   padding: 50px 40px;
 
 
