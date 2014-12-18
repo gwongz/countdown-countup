@@ -19,7 +19,8 @@ gulp.task('coffee', function() {
       extensions: ['.coffee']
     }))
     .pipe(rename('app.js'))
-    .pipe(gulp.dest('./app/static/js'));
+    .pipe(gulp.dest('./app/static/js'))
+    .pipe(reload({ stream: true}));
 });
 
 gulp.task('sass', function() {
