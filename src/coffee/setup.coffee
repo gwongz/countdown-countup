@@ -19,7 +19,7 @@ $ ->
       'background-image': 'url(static/images/bg/' + images[Math.floor(Math.random() * images.length)] + ')'
     });
 
-  randomBackground();
+  # randomBackground();
   
 
 

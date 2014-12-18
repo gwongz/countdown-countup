@@ -1,11 +1,48 @@
-$font-stack: Helvetica-Neue, Helvetica, sans-serif;
-$light-gray: #eee;
-$orange: rgb(213, 94, 34);
+@import '../fonts/Muncie.ttf';
+
+
+
+$font-muncie: 'Muncie';
+
+$font-subhed: Helvetica-Neue, Helvetica, sans-serif;
+$light-gray: #f0f3f8;
+$orange: #ff5800;
+$near-black: #2d2e30;
 $dark-gray: rgb(41,41,41);
 $red: rgb(192, 80, 79);
-$text-color: rgba(255,255,255,0.8);
+$text-transparent: rgba(255,255,255,0.8);
+$text-main: rgb(255,255,255);
+$btn-border: rgb(41,41,41);
+$white: #fff;
+$black: #000;
 
+@mixin font-face($style-name, $file, $family, $category:"") {
+    $filepath: "fonts/" + $family + "/" + $file;
+    @font-face {
+        font-family: "#{$style-name}";
+        src: url($filepath + ".eot");
+        src: url($filepath + ".eot?#iefix") format('embedded-opentype'), url($filepath + ".woff") format('woff'), url($filepath + ".ttf")  format('truetype'), url($filepath + ".svg#" + $style-name + "") format('svg');
+    }
+    %#{$style-name} {
+        font: {
+            @if $category != "" {
+                family: "#{$style-name}", #{$category};
+            }
+            @else {
+                family: "#{$style-name}";
+                weight: normal;
+            }
+        }
+    }
+}
 
+@include font-face('Klinic', '../../fonts/KlinicSlabMedium', 'Klinic', 'serif');
+@include font-face('EdmondSans', '../../fonts/Edmondsans-Regular', 'EdmondSans', 'sans-serif');
+/*@include font-face('Klinic', '../fonts/KlinicSlabMedium.otf', 'normal', 'normal');*/
+
+$font-klinic: 'Klinic';
+$font-primary: 'Klinic';
+$font-edmond: 'EdmondSans';
 @mixin input-placeholder($color) {
   ::-webkit-input-placeholder {
    color: $color;
@@ -30,49 +67,79 @@ $text-color: rgba(255,255,255,0.8);
 body {
   background: cover;
   background-size: cover;
-  font: 100% $font-stack;
+  font: 100% $font-subhed;
   font-weight: lighter;
-  background-color: $red;
-  color: $text-color;
+  background-color: $light-gray;
+  color: $black;
+  text-align: left;
   h1 {
-    font-size: 10px;
-    text-align: center;
+    font: 100% $font-primary;
+    font-size: 50px;
+    color: $black;
+    font-weight: bold;
   }
+}
+
+.wrapper {
+  padding: 20px 50px;
+}
+
+.countBox {
+  background-color: $orange;
+  border: solid 10px $white;
+
 }
 
 
 
 
 
-
-
 .countForm {
-  text-align:center;
+  padding: 50px 40px;
+
+
 
   input{
     text-align:center;
     outline: none;
     cursor: auto;
-    color: $dark-gray;
+    color: $white;
     border-radius: 2px;
-  }
-  
-  input[type=text], input[type=datetime]{
-    font-size: 32px;
-    background: rgba(255,255,255, 0.4);
-    border: 0;
-    border-bottom: 3px solid $dark-gray;
-    width: 17em;
-    line-height: 1.2em;
-    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: $font-subhed;
+    text-transform: uppercase;
+    font-weight: lighter;
+
+
+
+    &[type=text], input[type=datetime]{
+      font-size: 28px;
+      background: 0;
+      border: 0;
+      border-bottom: 3px solid $white;
+      width: 17em;
+      line-height: 1.2em;
+    }
+
+    &[type=submit] {
+      background-color: $white;
+      border-radius: 0;
+      border: solid 2px $black;
+      color: $black;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: 500;
+
+    }
   }
 
   @include input-placeholder($dark-gray);
 
-  input[type=submit]{
-    display: block;
-    align: center;
+  .submitDiv{
+    padding-top: 20px;
   }
+
+
 
 }
 
