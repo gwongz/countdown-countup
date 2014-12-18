@@ -2,9 +2,10 @@ var gulp = require('gulp');
 var browserify = require('gulp-browserify');
 var sass = require('gulp-sass');
 var rename = require('gulp-rename');
-var rimraf = require('gulp-rimraf');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
+var runSequence = require('run-sequence');
+var del = require('del');
 
 var paths = {
   coffee: ['src/coffee/**/*'],
@@ -32,18 +33,27 @@ gulp.task('serve', function() {
   browserSync({
     proxy: 'localhost:5000'
   });
-
   gulp.watch(paths.sass, ['sass']);
   gulp.watch(paths.coffee, ['coffee']);
 
 });
 
 gulp.task('clean', function() {
-  gulp.src( ['./app/static/js', './app/static/css'], { read: false})
-    .pipe(rimraf());
+  del([
+    './app/static/js/**',
+    './app/static/css/**'
+  ]);
 });
 
-gulp.task('build', ['clean', 'coffee', 'sass']);
+gulp.task('build', function(callback){
+  runSequence(
+    'clean',
+    'coffee',
+    'sass',
+    callback
+  );
+});
+
 
 gulp.task('default', ['build', 'serve']);
 
