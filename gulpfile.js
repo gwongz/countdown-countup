@@ -3,6 +3,8 @@ var browserify = require('gulp-browserify');
 var sass = require('gulp-sass');
 var rename = require('gulp-rename');
 var rimraf = require('gulp-rimraf');
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
 
 var paths = {
   coffee: ['src/coffee/**/*'],
@@ -22,21 +24,27 @@ gulp.task('coffee', function() {
 gulp.task('sass', function() {
   gulp.src('src/sass/**/*')
     .pipe(sass())
-    .pipe(gulp.dest('./app/static/css'));
+    .pipe(gulp.dest('./app/static/css'))
+    .pipe(reload({ stream: true}));
+});
+
+gulp.task('serve', function() {
+  browserSync({
+    proxy: 'localhost:5000'
+  });
+
+  gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.coffee, ['coffee']);
+
 });
 
 gulp.task('clean', function() {
   gulp.src( ['./app/static/js', './app/static/css'], { read: false})
-    .pipe(rimraf( {force: true}));
+    .pipe(rimraf());
 });
 
-gulp.task('watch', function() {
-  gulp.watch(paths.coffee, ['coffee']);
-  gulp.watch(paths.sass, ['sass']);
-
-});
 gulp.task('build', ['clean', 'coffee', 'sass']);
 
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['build', 'serve']);
 
 

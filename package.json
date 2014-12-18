@@ -7,8 +7,8 @@
     "gulp-rename": "~1.2.0",
     "browser-sync": "~1.8.0",
     "coffee-reactify": "~2.1.0",
-    "rimraf": "~2.2.8",
-    "gulp-rimraf": "~0.1.1"
+    "gulp-rimraf": "~0.1.1",
+    "react": "~0.12.1"
   },
   "dependencies": {
     "jquery": "~2.1.2"

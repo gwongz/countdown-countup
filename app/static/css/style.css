@@ -6,7 +6,7 @@ body {
   background-color: #c0504f;
   color: rgba(255, 255, 255, 0.8); }
   body h1 {
-    font-size: 56px;
+    font-size: 10px;
     text-align: center; }
 
 .countForm {
@@ -36,4 +36,5 @@ body {
   .countForm :-ms-input-placeholder {
     color: #292929; }
   .countForm input[type=submit] {
-    color: red; }
+    display: block;
+    align: center; }

@@ -35,7 +35,7 @@ body {
   background-color: $red;
   color: $text-color;
   h1 {
-    font-size: 56px;
+    font-size: 10px;
     text-align: center;
   }
 }
@@ -70,7 +70,8 @@ body {
   @include input-placeholder($dark-gray);
 
   input[type=submit]{
-    color: red;
+    display: block;
+    align: center;
   }
 
 }
