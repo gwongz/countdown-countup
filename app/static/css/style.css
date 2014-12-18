@@ -1,24 +1,23 @@
 body {
   background: cover;
-  /*background: url(images/F8.svg) no-repeat center center fixed;*/
   background-size: cover;
   font: 100% Helvetica-Neue, Helvetica, sans-serif;
   font-weight: lighter;
   background-color: #c0504f;
-  color: #292929; }
+  color: rgba(255, 255, 255, 0.8); }
   body h1 {
     font-size: 56px;
     text-align: center; }
 
-.countdownForm {
+.countForm {
   text-align: center; }
-  .countdownForm input {
+  .countForm input {
     text-align: center;
     outline: none;
     cursor: auto;
     color: #292929;
     border-radius: 2px; }
-  .countdownForm input[type=text], .countdownForm input[type=datetime] {
+  .countForm input[type=text], .countForm input[type=datetime] {
     font-size: 32px;
     background: rgba(255, 255, 255, 0.4);
     border: 0;
@@ -26,15 +25,15 @@ body {
     width: 17em;
     line-height: 1.2em;
     font-weight: bold; }
-  .countdownForm ::-webkit-input-placeholder {
+  .countForm ::-webkit-input-placeholder {
     color: #292929; }
-  .countdownForm :-moz-placeholder {
+  .countForm :-moz-placeholder {
     /* Firefox 18- */
     color: #292929; }
-  .countdownForm ::-moz-placeholder {
+  .countForm ::-moz-placeholder {
     /* Firefox 19+ */
     color: #292929; }
-  .countdownForm :-ms-input-placeholder {
+  .countForm :-ms-input-placeholder {
     color: #292929; }
-  .countdownForm input[type=submit] {
+  .countForm input[type=submit] {
     color: red; }

@@ -27476,9 +27476,7 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":30}],149:[function(require,module,exports){
-var $, counter, startup;
-
-$ = require('jquery');
+var counter, startup;
 
 startup = require('./setup');
 
@@ -27486,20 +27484,109 @@ counter = require('./counter');
 
 
 
-},{"./counter":150,"./setup":151,"jquery":2}],150:[function(require,module,exports){
-var AppLayer, React;
+},{"./counter":150,"./setup":151}],150:[function(require,module,exports){
+var AppLayer, CountBox, CountForm, CountdownForm, CountupForm, React;
 
 React = require('react');
 
-AppLayer = React.createClass({
+CountdownForm = React.createClass({
+  handleSubmit: function(e) {
+    console.log('submitting countdown form');
+    return e.preventDefault();
+  },
   render: function() {
-    return React.createElement("div", {
-      "className": "appLayer"
-    }, React.createElement("p", null, "This is my app layer."));
+    return React.createElement("form", {
+      "className": "countForm",
+      "onSubmit": this.handleSubmit
+    }, React.createElement("h1", null, "What are you counting down to?"), React.createElement("input", {
+      "type": "text",
+      "ref": "title"
+    }), React.createElement("h1", null, "When does it start?"), React.createElement("input", {
+      "type": "text",
+      "ref": "occurs"
+    }), React.createElement("input", {
+      "type": "submit",
+      "value": "Begin count down"
+    }));
   }
 });
 
-React.render(React.createElement(AppLayer, null), document.getElementById('content'));
+CountupForm = React.createClass({
+  handleSubmit: function(e) {
+    console.log('submitting countup form');
+    return e.preventDefault();
+  },
+  render: function() {
+    return React.createElement("form", {
+      "className": "countForm",
+      "onSubmit": this.handleSubmit
+    }, React.createElement("h1", null, "What are you counting up from?"), React.createElement("input", {
+      "type": "text",
+      "ref": "title"
+    }), React.createElement("h1", null, "When did it happen?"), React.createElement("input", {
+      "type": "text",
+      "ref": "occurs"
+    }), React.createElement("input", {
+      "type": "submit",
+      "value": "Begin counting"
+    }));
+  }
+});
+
+CountForm = React.createClass({
+  render: function() {
+    var countForm;
+    console.log('rendering countform');
+    if (this.props.countdown) {
+      console.log('countdown is ture');
+      countForm = React.createElement(CountdownForm, null);
+    } else {
+      console.log('countdown is false');
+      countForm = React.createElement(CountupForm, null);
+    }
+    return countForm;
+  }
+});
+
+CountBox = React.createClass({
+  render: function() {
+    return React.createElement("div", {
+      "className": "countBox"
+    }, React.createElement(CountForm, {
+      "countdown": this.props.countdown
+    }));
+  }
+});
+
+AppLayer = React.createClass({
+  getInitialState: function() {
+    var initialcountdown;
+    initialcountdown = this.props.countdown;
+    return {
+      countdown: Boolean(this.props.countdown)
+    };
+  },
+  toggleView: function() {
+    var countdown;
+    countdown = this.state.countdown;
+    return this.setState({
+      countdown: !countdown
+    });
+  },
+  render: function() {
+    return React.createElement("div", {
+      "className": "appLayer"
+    }, React.createElement("p", {
+      "onClick": this.toggleView
+    }, "This is value of countdown ", this.state.countdown.toString()), React.createElement(CountBox, {
+      "countdown": this.state.countdown
+    }));
+  }
+});
+
+React.render(React.createElement(AppLayer, {
+  "countdown": "true"
+}), document.getElementById('content'));
 
 
 
