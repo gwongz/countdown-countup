@@ -42,7 +42,8 @@ gulp.task('reload', function() {
 
 gulp.task('serve', function() {
   browserSync({
-    proxy: 'localhost:5000'
+    proxy: 'localhost:5000',
+    open: false
   });
   gulp.watch(paths.sass, ['sass']);
   gulp.watch(paths.coffee, ['coffee']);
@@ -62,7 +63,6 @@ gulp.task('build', function(callback){
     'clean',
     'coffee',
     'sass',
-    'fonts',
     callback
   );
 });
