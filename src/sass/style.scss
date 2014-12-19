@@ -16,32 +16,7 @@ $btn-border: rgb(41,41,41);
 $white: #fff;
 $black: #000;
 
-@mixin font-face($style-name, $file, $family, $category:"") {
-    $filepath: "/fonts/" + $family + "/" + $file;
-    @font-face {
-        font-family: "#{$style-name}";
-        src: url($filepath + ".eot");
-        src: url($filepath + ".eot?#iefix") format('embedded-opentype'), url($filepath + ".woff") format('woff'), url($filepath + ".ttf")  format('truetype'), url($filepath + ".svg#" + $style-name + "") format('svg');
-    }
-    %#{$style-name} {
-        font: {
-            @if $category != "" {
-                family: "#{$style-name}", #{$category};
-            }
-            @else {
-                family: "#{$style-name}";
-                weight: normal;
-            }
-        }
-    }
-}
-
-@include font-face('Klinic', 'KlinicSlabMedium', 'serif');
-@include font-face('EdmondSans', 'Edmondsans-Regular', 'EdmondSans', 'sans-serif');
-/*@include font-face('Klinic', '../fonts/KlinicSlabMedium.otf', 'normal', 'normal');*/
-
-$font-klinic: 'Klinic';
-$font-primary: 'Klinic';
+$font-primary: 'Georgia';
 $font-edmond: 'EdmondSans';
 @mixin input-placeholder($color) {
   ::-webkit-input-placeholder {
@@ -72,12 +47,7 @@ body {
   background-color: $light-gray;
   color: $black;
   text-align: left;
-  h1 {
-    font: 100% $font-primary;
-    font-size: 50px;
-    color: $black;
-    font-weight: bold;
-  }
+
 }
 
 .wrapper {
@@ -95,7 +65,14 @@ body {
 
 
 .countForm, .timer {
-  padding: 50px 40px;
+  padding: 60px;
+
+  h1 {
+    font: 100% $font-primary;
+    font-size: 50px;
+    color: $black;
+    font-weight: bold;
+  }
 
 
 
@@ -110,18 +87,16 @@ body {
     text-transform: uppercase;
     font-weight: lighter;
 
-
-
     &[type=text], input[type=datetime]{
       font-size: 28px;
       background: 0;
       border: 0;
       border-bottom: 3px solid $white;
-      width: 17em;
+      width: 16em;
       line-height: 1.2em;
     }
 
-    &[type=submit] {
+    &[type=submit]{
       background-color: $white;
       border-radius: 0;
       border: solid 2px $black;
@@ -133,13 +108,30 @@ body {
     }
   }
 
+  
+
   @include input-placeholder($dark-gray);
 
   .submitDiv{
     padding-top: 20px;
   }
 
+}
 
+.timerButton {
+  padding: 20px 0;
+  .toggleTimer{
+    background-color: $white;
+    border-radius: 0;
+    border: solid 2px $black;
+    color: $black;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: none;
+
+  }
 
 }
+
 

@@ -1,5 +1,5 @@
 React = require 'react'
-moment = require('moment');
+
 
 SetIntervalMixin = 
   componentWillMount: -> 
@@ -25,13 +25,10 @@ TimerButton = React.createClass
 
   render: ->
     if this.state.timing
-      <button className="toggleTimer" onClick={this.toggleTimer}>
-        Stop 
-      </button>
+      <input className="toggleTimer" type="button" value="Stop" onClick={this.toggleTimer} />
+
     else
-      <button className="toggleTimer" onClick={this.toggleTimer}>
-        Resume
-      </button>
+      <input className="toggleTimer" type="button" value="Resume" onClick={this.toggleTimer} />
 
 
 Timer = React.createClass
@@ -75,10 +72,6 @@ Timer = React.createClass
     milliseconds: milliseconds
 
 
-
-
-
-
   tick: ->
     newValues = this.calculateTime(this.props.data.occurs)
     this.setState(
@@ -105,66 +98,58 @@ Timer = React.createClass
     
 
   render: ->
+    countdown = this.props.countdown
+    msg = if countdown then 'happens in' else 'happened'
+    ago = if !countdown then 'ago' else ''
+
     <div className="timer">
-      <h1>Count down to {this.props.data.title}</h1>
+      <h1>{this.props.data.title} {msg}</h1>
       <span>{this.state.days} days </span>
       <span>{this.state.hours} hours </span>
       <span>{this.state.minutes} minutes </span>
       <span>{this.state.seconds}.{this.state.milliseconds} seconds </span>
+      {ago}
       <div className="timerButton">
         <TimerButton onButtonClick={this.toggleTimer} />
       </div>
     </div>
 
-CountdownForm = React.createClass
+CountForm = React.createClass
   handleSubmit: (e) ->
-    console.log 'submitting countdown form'
+    console.log 'submitting form'
     e.preventDefault()
     title = this.refs.title.getDOMNode().value.trim()
     occurs = this.refs.occurs.getDOMNode().value.trim()
     date = Date.parse(occurs)
 
+    ###
     if date > new Date()
-      console.log 'this is a valid date'
-      this.props.onFormSubmit({title: title, occurs: date})
-
-    else 
-      this.refs.title.getDOMNode().value = '';
-      this.refs.occurs.getDOMNode().value = '';
+    ###
+    console.log 'this is a valid date'
+    this.props.onFormSubmit({title: title, occurs: date})
+    this.refs.title.getDOMNode().value = '';
+    this.refs.occurs.getDOMNode().value = '';
 
 
   render: ->
     <form className="countForm" onSubmit={this.handleSubmit}>
       
       <input type="text" ref="title" /> 
-      <span> starts on </span>
+      <span> {this.props.msg} on </span>
       <input type="text" ref="occurs" />
       <div className="submitDiv">
-        <input type="submit" value="Begin count down"/>
+        <input type="submit" value="Start counting"/>
       </div>
     </form>
 
-CountupForm = React.createClass
-  handleSubmit: (e) ->
-    console.log 'submitting countup form'
-    e.preventDefault()
 
-  render: ->
-    <form className="countForm" onSubmit={this.handleSubmit}>
-      <h1>What are you counting up from?</h1>
-      <input type="text" ref="title" />
-      <h1>When do you want to count up from?</h1>
-      <input type="text" ref="occurs" />
-      <div className="submitDiv">
-        <input type="submit" value="Begin counting" />
-      </div>
-    </form>
 
-CountForm = React.createClass
+CountBox = React.createClass
   getInitialState: ->
-    counting: Boolean(this.props.counting)
-    countdown: Boolean(this.props.countdown)
+    counting: false
+    countdown: this.props.countdown
     data: []
+
 
   handleFormSubmit: (data) ->
     console.log 'in the form submit callback'
@@ -184,48 +169,37 @@ CountForm = React.createClass
 
   render: ->
     if this.state.counting
-      console.log 'counting is true and so is countdown so render countdown timer'
-      <Timer countdown={this.state.countdown.toString()} data={this.state.data} />
+      <Timer countdown={this.state.countdown} data={this.state.data} />
 
-    else if not this.state.counting and this.state.countdown 
-      console.log 'we want to show the form and not the timer for countdown'
-      <CountdownForm countdown="true" onFormSubmit={this.handleFormSubmit}/>
-
-    else 
-      console.log 'we want to show the count up form and not the timer '
-      <CountupForm countdown="false" onFormSubmit={this.handleFormSubmit}/>
-
-
-
-CountBox = React.createClass
-  render: ->
-    console.log 'the value of counting in countbox rendering'
-    console.log this.props.counting
-    <div className="countBox">
-      <CountForm countdown={this.props.countdown} counting={this.props.counting}/> 
-    </div>
+    else  
+      msg = if this.state.countdown then 'happens' else 'happened'
+      <CountForm msg={msg} onFormSubmit={this.handleFormSubmit}/>
 
 
 AppLayer = React.createClass 
   getInitialState: ->
-    countdown: Boolean(this.props.countdown)
-    counting: false;
+    countdown: true
+    count: 1
+
 
   toggleView: ->
-    countdown = this.state.countdown
     this.setState(
-      countdown: !countdown
-      counting: false
+      countdown: !this.state.countdown
+      count: this.state.count + 1
     )
 
   render: -> 
-    <div className="appLayer">
-      <p onClick={this.toggleView}>This is value of countdown {this.state.countdown.toString()}</p>
-      <CountBox countdown={this.state.countdown} counting={this.state.counting}/>
+    action = if this.state.countdown then 'Count up' else 'Count down'
+    <div className="appLayer" key={this.state.count}>
+      <p onClick={this.toggleView}>
+      {action} instead</p>
+      <div className="countBox">
+        <CountBox countdown={this.state.countdown} />
+      </div>
     </div>
 
 React.render(
-  <AppLayer countdown="true" counting="false"/>,
+  <AppLayer/>,
   document.getElementById('content')
 );
 
