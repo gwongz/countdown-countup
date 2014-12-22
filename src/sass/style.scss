@@ -16,6 +16,7 @@ $font-primary: 'klinic_slabbook', 'Georgia', serif;
 $font-subhed: 'maven_pro_light300', Helvetica-Neue, Helvetica, sans-serif;
 $font-edmond: 'maven_pro_light300';
 $klinicbold: 'klinic_slabbold';
+$smaller: 18px;
 
 
 
@@ -68,18 +69,19 @@ body {
 footer, .wrapper:after{
   height: 142px;
   padding: 0 50px;
+  text-align: right;
+  font-size: $smaller;
 
 }
 
 .appLayer {
   font-family: $font-subhed;
-  min-height: 400px;
   p {
     text-align: right;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: bold;
-    font-size: 18px;
+    font-size: $smaller;
   }
 }
 
@@ -88,6 +90,7 @@ footer, .wrapper:after{
   background-color: $orange;
   border: solid 10px $white;
   opacity: 0.95;
+  min-height: 500px;
 
 }
 
@@ -99,6 +102,14 @@ footer, .wrapper:after{
     font-size: 50px;
     font-weight: bold;
   }
+
+  .countError{
+    padding: 10px 0;
+    font-size: 20px;
+    color: $white;
+  }
+
+
 }
 
 .countForm, .timer, .timerButton {

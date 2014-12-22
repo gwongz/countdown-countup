@@ -1,4 +1,5 @@
 React = require 'react'
+$ = require 'jquery'
 
 
 SetIntervalMixin = 
@@ -44,13 +45,13 @@ Timer = React.createClass
     diff = Math.abs(futureTime - now) 
 
     secondsPerDay = 60 * 60 * 24
+    secondsPerYear = secondsPerDay * 365
     seconds = diff / 1000
 
     # extract days 
     days = parseInt(seconds / secondsPerDay)
     # seconds remaining after extracting days 
     seconds = seconds % secondsPerDay
-
 
     # extract hours 
     hours = parseInt( seconds / 3600)
@@ -102,9 +103,14 @@ Timer = React.createClass
     msg = if countdown then 'happens in' else 'happened'
     ago = if !countdown then 'ago' else ''
 
+    years = parseInt(this.state.days / 365)
+    days = if years then (this.state.days % 365) else this.state.days
+
     <div className="timer">
       <h1>{this.props.data.title} {msg}</h1>
-      <span>{this.state.days} days </span>
+
+      <span>{years} years </span>
+      <span>{days} days </span>
       <span>{this.state.hours} hours </span>
       <span>{this.state.minutes} minutes </span>
       <span>{this.state.seconds}.{this.state.milliseconds} seconds </span>
@@ -118,18 +124,24 @@ CountForm = React.createClass
   handleSubmit: (e) ->
     console.log 'submitting form'
     e.preventDefault()
+    this.resetError()
     title = this.refs.title.getDOMNode().value.trim()
     occurs = this.refs.occurs.getDOMNode().value.trim()
     date = Date.parse(occurs)
 
-    ###
-    if date > new Date()
-    ###
+    # valid date was not submitted
+    if isNaN(date)
+      console.log 'this is not a number'
+      $('.countError').text('Please enter a valid date')
+      return
+
     console.log 'this is a valid date'
     this.props.onFormSubmit({title: title, occurs: date})
     this.refs.title.getDOMNode().value = '';
     this.refs.occurs.getDOMNode().value = '';
 
+  resetError: ->
+    $('.countError').text('')
 
   render: ->
     question = if this.props.countdown then 'What are you counting down to?' else 'What are you counting up from?' 
@@ -140,11 +152,13 @@ CountForm = React.createClass
 
     <form className="countForm" onSubmit={this.handleSubmit}>
       <h1>{question}</h1>
-      <input type="text" name="title" ref="title" />
+      <input type="text" name="title" ref="title" onClick={this.resetError} />
       <label for="title">Name of event</label> 
  
-      <input type="text" ref="occurs" name="occurs"/>
+      <input type="text" ref="occurs" name="occurs" onClick={this.resetError} />
       <label for="occurs">{this.props.msg}</label>
+
+      <div className="countError"></div>
       <div className="submitDiv">
         <input type="submit" value="Start counting"/>
       </div>
@@ -168,11 +182,11 @@ CountBox = React.createClass
     console.log 'the value of counting state'
     console.log typeof(this.state.counting)
     # reset counting state 
-    this.setState(
+    this.setState
       counting: true
       data: data
       countdown: this.state.countdown
-    )
+    
 
 
   render: ->
