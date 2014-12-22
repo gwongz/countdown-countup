@@ -16,19 +16,19 @@ TimerButton = React.createClass
   getInitialState: ->
     timing: true
   
-  toggleTimer: ->
+  toggleTimer: (e) ->
     console.log 'timer button was clicked'
-   
+    e.preventDefault()
     # call callback on parent
     this.props.onButtonClick(timerOn: !this.state.timing)
     this.setState(timing: !this.state.timing)
 
   render: ->
     if this.state.timing
-      <input className="toggleTimer" type="button" value="Stop" onClick={this.toggleTimer} />
+      <input type="submit" value="Stop" onClick={this.toggleTimer} />
 
     else
-      <input className="toggleTimer" type="button" value="Resume" onClick={this.toggleTimer} />
+      <input type="submit" value="Resume" onClick={this.toggleTimer} />
 
 
 Timer = React.createClass
@@ -109,7 +109,7 @@ Timer = React.createClass
       <span>{this.state.minutes} minutes </span>
       <span>{this.state.seconds}.{this.state.milliseconds} seconds </span>
       {ago}
-      <div className="timerButton">
+      <div className="submitDiv">
         <TimerButton onButtonClick={this.toggleTimer} />
       </div>
     </div>
@@ -132,11 +132,19 @@ CountForm = React.createClass
 
 
   render: ->
+    question = if this.props.countdown then 'What are you counting down to?' else 'What are you counting up from?' 
+    currentYear = new Date().getFullYear()
+    pi = "3/15/#{currentYear}"
+    if Date.parse(pi) < new Date()
+      pi = "3/15/#{currentYear + 1}"
+
     <form className="countForm" onSubmit={this.handleSubmit}>
-      
-      <input type="text" ref="title" /> 
-      <span> {this.props.msg} on </span>
-      <input type="text" ref="occurs" />
+      <h1>{question}</h1>
+      <input type="text" name="title" ref="title" />
+      <label for="title">Name of event</label> 
+ 
+      <input type="text" ref="occurs" name="occurs"/>
+      <label for="occurs">{this.props.msg}</label>
       <div className="submitDiv">
         <input type="submit" value="Start counting"/>
       </div>
@@ -172,8 +180,8 @@ CountBox = React.createClass
       <Timer countdown={this.state.countdown} data={this.state.data} />
 
     else  
-      msg = if this.state.countdown then 'happens' else 'happened'
-      <CountForm msg={msg} onFormSubmit={this.handleFormSubmit}/>
+      msg = if this.state.countdown then 'Happens on' else 'Happened'
+      <CountForm countdown={this.state.countdown} msg={msg} onFormSubmit={this.handleFormSubmit}/>
 
 
 AppLayer = React.createClass 
@@ -181,12 +189,11 @@ AppLayer = React.createClass
     countdown: true
     count: 1
 
-
   toggleView: ->
-    this.setState(
+    this.setState
       countdown: !this.state.countdown
       count: this.state.count + 1
-    )
+    
 
   render: -> 
     action = if this.state.countdown then 'Count up' else 'Count down'

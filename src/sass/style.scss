@@ -1,23 +1,24 @@
-@import '../fonts/Muncie.ttf';
+@import '../fonts/klinicslab/stylesheet.css';
+@import '../fonts/mavenpro/stylesheet.css';
 
 
 
-$font-muncie: 'Muncie';
-
-$font-subhed: Helvetica-Neue, Helvetica, sans-serif;
 $light-gray: #f0f3f8;
-$orange: #ff5800;
 $near-black: #2d2e30;
 $dark-gray: rgb(41,41,41);
-$red: rgb(192, 80, 79);
+$orange: #f0a748;
 $text-transparent: rgba(255,255,255,0.8);
 $text-main: rgb(255,255,255);
 $btn-border: rgb(41,41,41);
 $white: #fff;
 $black: #000;
+$font-primary: 'klinic_slabbook', 'Georgia', serif;
+$font-subhed: 'maven_pro_light300', Helvetica-Neue, Helvetica, sans-serif;
+$font-edmond: 'maven_pro_light300';
+$klinicbold: 'klinic_slabbold';
 
-$font-primary: 'Georgia';
-$font-edmond: 'EdmondSans';
+
+
 @mixin input-placeholder($color) {
   ::-webkit-input-placeholder {
    color: $color;
@@ -40,41 +41,73 @@ $font-edmond: 'EdmondSans';
 
 
 body {
+  font-size: 26px;
+  font-family: $font-primary;
   background: cover;
+  background-image: url('../images/clock_unsplash_sonja_langford_bw.jpg');
   background-size: cover;
-  font: 100% $font-subhed;
   font-weight: lighter;
   background-color: $light-gray;
-  color: $black;
+  color: $near-black;
   text-align: left;
+  padding: 10px 20px;
 
 }
 
 .wrapper {
   padding: 20px 50px;
+  min-height: 100%;
+  margin-bottom: -142px;
+
+  &:after {
+    content: '';
+    display: block;
+  }
+}
+
+footer, .wrapper:after{
+  height: 142px;
+  padding: 0 50px;
+
+}
+
+.appLayer {
+  font-family: $font-subhed;
+  min-height: 400px;
+  p {
+    text-align: right;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 18px;
+  }
 }
 
 .countBox {
+  background: 0;
   background-color: $orange;
   border: solid 10px $white;
+  opacity: 0.95;
 
 }
-
-
-
-
 
 .countForm, .timer {
   padding: 60px;
 
   h1 {
-    font: 100% $font-primary;
+    font-family: 'klinic_slabmedium';
     font-size: 50px;
-    color: $black;
     font-weight: bold;
   }
+}
 
+.countForm, .timer, .timerButton {
 
+  label {
+    display: block; 
+    padding: 10px 0; 
+    font-size: 20px;  
+  }
 
   input{
     text-align:center;
@@ -84,10 +117,9 @@ body {
     border-radius: 2px;
     letter-spacing: 1px;
     font-family: $font-subhed;
-    text-transform: uppercase;
     font-weight: lighter;
 
-    &[type=text], input[type=datetime]{
+    &[type=text]{
       font-size: 28px;
       background: 0;
       border: 0;
@@ -96,42 +128,64 @@ body {
       line-height: 1.2em;
     }
 
-    &[type=submit]{
+    &[type=submit], [type=button] {
       background-color: $white;
-      border-radius: 0;
-      border: solid 2px $black;
-      color: $black;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      color: $near-black;
       padding: 10px;
       font-size: 16px;
       font-weight: 500;
 
+      &:hover{
+        background-color: $near-black;
+        color: $white;
+      }
     }
   }
-
+}
   
 
-  @include input-placeholder($dark-gray);
+.submitDiv{
+  padding-top: 20px;
+}
 
-  .submitDiv{
-    padding-top: 20px;
-  }
+
+
+
+.tooltip{
+  display: inline;
+  position: relative;
 
 }
 
-.timerButton {
-  padding: 20px 0;
-  .toggleTimer{
-    background-color: $white;
-    border-radius: 0;
-    border: solid 2px $black;
-    color: $black;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: 500;
-    box-shadow: none;
-
-  }
-
+.tooltip:hover:after{
+  background: 0;
+  background: rgba(0,0,0,.8);
+  border-radius: 5px;
+  bottom: 20px;
+  color: #fff;
+  content: attr(title);
+  left: 50%;
+  padding: 20px 5px;
+  position: absolute;
+  z-index: 98;
+  width: 200px;
+  font-size: 16px;
+  text-align: center;
 }
+
+.tooltip:hover:before{
+  border: solid;
+  border-color: #333 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 14px;
+  content: "";
+  left: 80%;
+  position: absolute;
+  z-index: 99;
+}
+
+
 
 
