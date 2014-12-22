@@ -2,9 +2,5 @@
 *.rdb
 .sass-cache
 
-# compiled files
-app/static/css/
-app/static/js/
-
 *.pyc
 node_modules
