@@ -7,6 +7,10 @@ var reload = browserSync.reload;
 var runSequence = require('run-sequence');
 var del = require('del');
 var uglify = require('gulp-uglify');
+var plumber = require('gulp-plumber');
+var onError = function(err){
+  console.log(err);
+}
 
 var paths = {
   coffee: ['src/coffee/**/*'],
@@ -14,7 +18,7 @@ var paths = {
 };
 
 gulp.task('coffee', function() {
-  gulp.src('src/coffee/app.coffee', { read:false })
+  return gulp.src('./src/coffee/app.coffee', { read:false })
     .pipe(browserify({
       transform: ['coffee-reactify'],
       extensions: ['.coffee']
@@ -26,15 +30,18 @@ gulp.task('coffee', function() {
 });
 
 gulp.task('sass', function() {
-  gulp.src('src/sass/**/*')
+  return gulp.src('./src/sass/**/*')
     .pipe(sass())
     .pipe(gulp.dest('./app/static/css'))
     .pipe(reload({ stream: true}));
 });
 
 gulp.task('fonts', function(){
-  gulp.src('src/fonts/**/*')
-    .pipe(gulp.dest('./app/static/css/fonts'));
+  return gulp.src('./src/fonts/**/*')
+    .pipe(plumber ({
+      errorHandler: onError
+    }))
+    .pipe(gulp.dest('./app/static/fonts'));
 });
 
 gulp.task('reload', function() {
@@ -42,34 +49,36 @@ gulp.task('reload', function() {
     .pipe(reload({ stream: true}));
 });
 
-gulp.task('serve', function() {
+gulp.task('serve', ['build'], function() {
   browserSync({
     proxy: 'localhost:5000',
     open: false
   });
-  gulp.watch(paths.sass, ['sass']);
-  gulp.watch(paths.coffee, ['coffee']);
+  // gulp.watch(paths.sass, ['sass']);
+  // gulp.watch(paths.coffee, ['coffee']);
   gulp.watch('./app/templates/*html', ['reload']);
 
 });
 
 gulp.task('clean', function() {
-  del([
+  return del([
     './app/static/js/**',
-    './app/static/css/**'
+    './app/static/css/**',
+    './app/static/fonts/**/*'
   ]);
 });
 
 gulp.task('build', function(callback){
   runSequence(
     'clean',
-    'coffee',
+    'fonts',
     'sass',
+    'coffee',
     callback
   );
 });
 
 
-gulp.task('default', ['build', 'serve']);
+gulp.task('default', ['serve']);
 
 

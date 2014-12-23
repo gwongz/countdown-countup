@@ -9,7 +9,8 @@
     "coffee-reactify": "~2.1.0",
     "run-sequence": "~1.0.2",
     "del": "~1.1.0",
-    "gulp-uglify": "~1.0.2"
+    "gulp-uglify": "~1.0.2",
+    "gulp-plumber": "~0.6.6"
   },
   "dependencies": {
     "jquery": "~2.1.2",
