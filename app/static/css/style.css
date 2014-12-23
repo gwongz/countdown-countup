@@ -1,1 +1,118 @@
-body{font-size:26px;font-family:klinic_slabbook,Georgia,serif;background:url(../images/clock_unsplash_sonja_langford_bw.jpg) cover/cover #f0f3f8;font-weight:lighter;color:#2d2e30;text-align:left;padding:10px 20px}.wrapper{padding:20px 50px;min-height:100%;margin-bottom:-142px}.wrapper:after{content:'';display:block}.wrapper:after,footer{height:142px;padding:0 50px;text-align:right;font-size:18px}.appLayer{font-family:maven_pro_light300,Helvetica-Neue,Helvetica,sans-serif}.appLayer p{text-align:right;text-transform:uppercase;letter-spacing:1px;font-weight:700;font-size:18px}.countBox{background:0 #f0a748;border:10px solid #fff;opacity:.95;min-height:500px}.countForm,.timer{padding:60px}.countForm h1,.timer h1{font-family:klinic_slabmedium;font-size:50px;font-weight:700}.countForm .countError,.timer .countError{padding:10px 0;font-size:20px;color:#fff}.countForm label,.timer label,.timerButton label{display:block;padding:10px 0;font-size:20px}.countForm input,.timer input,.timerButton input{text-align:center;outline:0;cursor:auto;color:#fff;border-radius:2px;letter-spacing:1px;font-family:maven_pro_light300,Helvetica-Neue,Helvetica,sans-serif;font-weight:lighter}.countForm input[type=text],.timer input[type=text],.timerButton input[type=text]{font-size:28px;background:0;border:0;border-bottom:3px solid #fff;width:16em;line-height:1.2em}.countForm input [type=button],.countForm input[type=submit],.timer input [type=button],.timer input[type=submit],.timerButton input [type=button],.timerButton input[type=submit]{background-color:#fff;border-radius:6px;border:1px solid transparent;color:#2d2e30;padding:10px;font-size:16px;font-weight:500}.countForm input [type=button]:hover,.countForm input[type=submit]:hover,.timer input [type=button]:hover,.timer input[type=submit]:hover,.timerButton input [type=button]:hover,.timerButton input[type=submit]:hover{background-color:#2d2e30;color:#fff}.submitDiv{padding-top:20px}.tooltip{display:inline;position:relative}.tooltip:hover:after{background:0;background:rgba(0,0,0,.8);border-radius:5px;bottom:20px;color:#fff;content:attr(title);left:50%;padding:20px 5px;position:absolute;z-index:98;width:200px;font-size:16px;text-align:center}.tooltip:hover:before{border:solid;border-color:#333 transparent;border-width:6px 6px 0;bottom:14px;content:"";left:80%;position:absolute;z-index:99}
+@import url(../fonts/klinicslab/stylesheet.css);
+@import url(../fonts/mavenpro/stylesheet.css);
+body {
+  font-size: 26px;
+  font-family: 'klinic_slabbook', 'Georgia', serif;
+  background: cover;
+  background-image: url('../images/clock_unsplash_sonja_langford_bw.jpg');
+  background-size: cover;
+  font-weight: lighter;
+  background-color: #f0f3f8;
+  color: #2d2e30;
+  text-align: left;
+  padding: 10px 20px; }
+
+.wrapper {
+  padding: 20px 50px;
+  min-height: 100%;
+  margin-bottom: -142px; }
+  .wrapper:after {
+    content: '';
+    display: block; }
+
+footer, .wrapper:after {
+  height: 142px;
+  padding: 0 50px;
+  text-align: right;
+  font-size: 18px; }
+
+.appLayer {
+  font-family: 'maven_pro_light300', Helvetica-Neue, Helvetica, sans-serif; }
+  .appLayer p {
+    text-align: right;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 18px; }
+
+.countBox {
+  background: 0;
+  background-color: #f0a748;
+  border: solid 10px #fff;
+  opacity: 0.95;
+  min-height: 500px; }
+
+.countForm, .timer {
+  padding: 60px; }
+  .countForm h1, .timer h1 {
+    font-family: 'klinic_slabmedium';
+    font-size: 50px;
+    font-weight: bold; }
+  .countForm .countError, .timer .countError {
+    padding: 10px 0;
+    font-size: 20px;
+    color: #fff; }
+
+.countForm label, .timer label, .timerButton label {
+  display: block;
+  padding: 10px 0;
+  font-size: 20px; }
+.countForm input, .timer input, .timerButton input {
+  text-align: center;
+  outline: none;
+  cursor: auto;
+  color: #fff;
+  border-radius: 2px;
+  letter-spacing: 1px;
+  font-family: 'maven_pro_light300', Helvetica-Neue, Helvetica, sans-serif;
+  font-weight: lighter; }
+  .countForm input[type=text], .timer input[type=text], .timerButton input[type=text] {
+    font-size: 28px;
+    background: 0;
+    border: 0;
+    border-bottom: 3px solid #fff;
+    width: 16em;
+    line-height: 1.2em; }
+  .countForm input[type=submit], .countForm input [type=button], .timer input[type=submit], .timer input [type=button], .timerButton input[type=submit], .timerButton input [type=button] {
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    color: #2d2e30;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 500; }
+    .countForm input[type=submit]:hover, .countForm input [type=button]:hover, .timer input[type=submit]:hover, .timer input [type=button]:hover, .timerButton input[type=submit]:hover, .timerButton input [type=button]:hover {
+      background-color: #2d2e30;
+      color: #fff; }
+
+.submitDiv {
+  padding-top: 20px; }
+
+.tooltip {
+  display: inline;
+  position: relative; }
+
+.tooltip:hover:after {
+  background: 0;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  bottom: 20px;
+  color: #fff;
+  content: attr(title);
+  left: 50%;
+  padding: 20px 5px;
+  position: absolute;
+  z-index: 98;
+  width: 200px;
+  font-size: 16px;
+  text-align: center; }
+
+.tooltip:hover:before {
+  border: solid;
+  border-color: #333 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 14px;
+  content: "";
+  left: 80%;
+  position: absolute;
+  z-index: 99; }

@@ -27,8 +27,8 @@ gulp.task('coffee', function() {
       transform: ['coffee-reactify'],
       extensions: ['.coffee']
     }))
-    .pipe(rename('app.js'))
     .pipe(uglify())
+    .pipe(rename('app.js'))
     .pipe(gulp.dest('./app/static/js'))
     .pipe(reload({ stream: true}));
 });
@@ -36,13 +36,14 @@ gulp.task('coffee', function() {
 gulp.task('sass', function() {
   return gulp.src('./src/sass/**/*')
     .pipe(sass())
-    .pipe(cssmin())
+    // .pipe(cssmin())
     .pipe(gulp.dest('./app/static/css'))
     .pipe(reload({ stream: true}));
 });
 
+// broken task
 gulp.task('fonts', function(){
-  return gulp.src('./src/fonts/**/*')
+  return gulp.src('./src/fonts/**/*.{ttf,woff,eof,svg,woff2,css}')
     .pipe(plumber ({
       errorHandler: onError
     }))
@@ -66,8 +67,8 @@ gulp.task('serve', ['build'], function() {
     proxy: 'localhost:5000',
     open: false
   });
-  // gulp.watch(paths.sass, ['sass']);
-  // gulp.watch(paths.coffee, ['coffee']);
+  gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.coffee, ['coffee']);
   gulp.watch('./app/templates/*html', ['reload']);
 
 });
@@ -76,13 +77,15 @@ gulp.task('clean', function() {
   return del([
     './app/static/js/**',
     './app/static/css/**',
-    './app/static/fonts/**/*'
+    './app/static/images/**',
+    './app/static/fonts/**'
   ]);
 });
 
 gulp.task('build', function(callback){
   runSequence(
     'clean',
+    'images',
     'fonts',
     'sass',
     'coffee',
