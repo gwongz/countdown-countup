@@ -53,8 +53,7 @@ gulp.task('fonts', function(){
 gulp.task('images', function(){
   return gulp.src('./src/images/**/*')
     .pipe(imagemin())
-    .pipe(gulp.dest('./app/static/images'))
-    .pipe(notify({message: 'Image task complete'}));
+    .pipe(gulp.dest('./app/static/images'));
 });
 
 gulp.task('reload', function() {
@@ -76,11 +75,13 @@ gulp.task('serve', ['build'], function() {
 gulp.task('clean', function() {
   return del([
     '.app/static/**/*'
-    // './app/static/js/**',
-    // './app/static/css/**',
-    // './app/static/images/**',
-    // './app/static/fonts/**'
   ]);
+});
+
+// this should be able to take multiple messages
+gulp.task('notify', function() {
+  return gulp.src('./app')
+    .pipe(notify({message: 'Build completed'}));
 });
 
 gulp.task('build', function(callback){
@@ -90,8 +91,10 @@ gulp.task('build', function(callback){
     'fonts',
     'sass',
     'coffee',
+    'notify',
     callback
   );
+
 
 });
 
