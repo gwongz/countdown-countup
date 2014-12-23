@@ -115,7 +115,7 @@ Timer = React.createClass
       <span>{this.state.minutes} minutes </span>
       <span>{this.state.seconds}.{this.state.milliseconds} seconds </span>
       {ago}
-      <div className="submitDiv">
+      <div>
         <TimerButton onButtonClick={this.toggleTimer} />
       </div>
     </div>

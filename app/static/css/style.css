@@ -1,5 +1,7 @@
 @import url(../fonts/klinicslab/stylesheet.css);
 @import url(../fonts/mavenpro/stylesheet.css);
+/* colors */
+/* fonts */
 body {
   font-size: 26px;
   font-family: 'klinic_slabbook', 'Georgia', serif;
@@ -15,25 +17,22 @@ body {
 .wrapper {
   padding: 20px 50px;
   min-height: 100%;
-  margin-bottom: -142px; }
+  margin-bottom: -100px; }
   .wrapper:after {
     content: '';
     display: block; }
 
 footer, .wrapper:after {
-  height: 142px;
+  height: 100px;
   padding: 0 50px;
-  text-align: right;
   font-size: 18px; }
 
-.appLayer {
-  font-family: 'maven_pro_light300', Helvetica-Neue, Helvetica, sans-serif; }
-  .appLayer p {
-    text-align: right;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-    font-size: 18px; }
+.appLayer p {
+  font-family: 'klinic_slabbold';
+  text-align: right;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 1px; }
 
 .countBox {
   background: 0;
@@ -43,7 +42,8 @@ footer, .wrapper:after {
   min-height: 500px; }
 
 .countForm, .timer {
-  padding: 60px; }
+  padding: 60px;
+  font-family: 'maven_pro_light300', Helvetica-Neue, Helvetica, sans-serif; }
   .countForm h1, .timer h1 {
     font-family: 'klinic_slabmedium';
     font-size: 50px;
@@ -84,35 +84,3 @@ footer, .wrapper:after {
     .countForm input[type=submit]:hover, .countForm input [type=button]:hover, .timer input[type=submit]:hover, .timer input [type=button]:hover, .timerButton input[type=submit]:hover, .timerButton input [type=button]:hover {
       background-color: #2d2e30;
       color: #fff; }
-
-.submitDiv {
-  padding-top: 20px; }
-
-.tooltip {
-  display: inline;
-  position: relative; }
-
-.tooltip:hover:after {
-  background: 0;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 5px;
-  bottom: 20px;
-  color: #fff;
-  content: attr(title);
-  left: 50%;
-  padding: 20px 5px;
-  position: absolute;
-  z-index: 98;
-  width: 200px;
-  font-size: 16px;
-  text-align: center; }
-
-.tooltip:hover:before {
-  border: solid;
-  border-color: #333 transparent;
-  border-width: 6px 6px 0 6px;
-  bottom: 14px;
-  content: "";
-  left: 80%;
-  position: absolute;
-  z-index: 99; }

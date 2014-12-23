@@ -2,20 +2,19 @@
 @import '../fonts/mavenpro/stylesheet.css';
 
 
-
+/* colors */
 $light-gray: #f0f3f8;
 $near-black: #2d2e30;
 $dark-gray: rgb(41,41,41);
 $orange: #f0a748;
-$text-transparent: rgba(255,255,255,0.8);
-$text-main: rgb(255,255,255);
-$btn-border: rgb(41,41,41);
 $white: #fff;
 $black: #000;
+
+/* fonts */
 $font-primary: 'klinic_slabbook', 'Georgia', serif;
 $font-subhed: 'maven_pro_light300', Helvetica-Neue, Helvetica, sans-serif;
 $font-edmond: 'maven_pro_light300';
-$klinicbold: 'klinic_slabbold';
+$font-primary-bold: 'klinic_slabbold';
 $smaller: 18px;
 
 
@@ -58,7 +57,7 @@ body {
 .wrapper {
   padding: 20px 50px;
   min-height: 100%;
-  margin-bottom: -142px;
+  margin-bottom: -100px;
 
   &:after {
     content: '';
@@ -67,21 +66,20 @@ body {
 }
 
 footer, .wrapper:after{
-  height: 142px;
+  height: 100px;
   padding: 0 50px;
-  text-align: right;
   font-size: $smaller;
 
 }
 
 .appLayer {
-  font-family: $font-subhed;
+  
   p {
+    font-family: $font-primary-bold;
     text-align: right;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
     font-size: $smaller;
+    letter-spacing: 1px;
   }
 }
 
@@ -96,6 +94,7 @@ footer, .wrapper:after{
 
 .countForm, .timer {
   padding: 60px;
+  font-family: $font-subhed;
 
   h1 {
     font-family: 'klinic_slabmedium';
@@ -156,47 +155,4 @@ footer, .wrapper:after{
   }
 }
   
-
-.submitDiv{
-  padding-top: 20px;
-}
-
-
-
-
-.tooltip{
-  display: inline;
-  position: relative;
-
-}
-
-.tooltip:hover:after{
-  background: 0;
-  background: rgba(0,0,0,.8);
-  border-radius: 5px;
-  bottom: 20px;
-  color: #fff;
-  content: attr(title);
-  left: 50%;
-  padding: 20px 5px;
-  position: absolute;
-  z-index: 98;
-  width: 200px;
-  font-size: 16px;
-  text-align: center;
-}
-
-.tooltip:hover:before{
-  border: solid;
-  border-color: #333 transparent;
-  border-width: 6px 6px 0 6px;
-  bottom: 14px;
-  content: "";
-  left: 80%;
-  position: absolute;
-  z-index: 99;
-}
-
-
-
 
