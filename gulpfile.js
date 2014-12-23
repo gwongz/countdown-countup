@@ -75,10 +75,11 @@ gulp.task('serve', ['build'], function() {
 
 gulp.task('clean', function() {
   return del([
-    './app/static/js/**',
-    './app/static/css/**',
-    './app/static/images/**',
-    './app/static/fonts/**'
+    '.app/static/**/*'
+    // './app/static/js/**',
+    // './app/static/css/**',
+    // './app/static/images/**',
+    // './app/static/fonts/**'
   ]);
 });
 
@@ -91,6 +92,7 @@ gulp.task('build', function(callback){
     'coffee',
     callback
   );
+
 });
 
 
