@@ -8,6 +8,8 @@ var runSequence = require('run-sequence');
 var del = require('del');
 var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
+var imagemin = require('gulp-imagemin');
+var notify = require('gulp-notify');
 var onError = function(err){
   console.log(err);
 }
@@ -42,6 +44,13 @@ gulp.task('fonts', function(){
       errorHandler: onError
     }))
     .pipe(gulp.dest('./app/static/fonts'));
+});
+
+gulp.task('images', function(){
+  return gulp.src('./src/images/**/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest('./app/static/images'))
+    .pipe(notify({message: 'Image task complete'}));
 });
 
 gulp.task('reload', function() {
