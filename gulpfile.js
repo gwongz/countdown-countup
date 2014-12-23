@@ -10,6 +10,8 @@ var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
 var imagemin = require('gulp-imagemin');
 var notify = require('gulp-notify');
+var cssmin = require('gulp-cssmin');
+
 var onError = function(err){
   console.log(err);
 }
@@ -34,6 +36,7 @@ gulp.task('coffee', function() {
 gulp.task('sass', function() {
   return gulp.src('./src/sass/**/*')
     .pipe(sass())
+    .pipe(cssmin())
     .pipe(gulp.dest('./app/static/css'))
     .pipe(reload({ stream: true}));
 });
