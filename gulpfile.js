@@ -6,6 +6,7 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var runSequence = require('run-sequence');
 var del = require('del');
+var uglify = require('gulp-uglify');
 
 var paths = {
   coffee: ['src/coffee/**/*'],
@@ -19,6 +20,7 @@ gulp.task('coffee', function() {
       extensions: ['.coffee']
     }))
     .pipe(rename('app.js'))
+    .pipe(uglify())
     .pipe(gulp.dest('./app/static/js'))
     .pipe(reload({ stream: true}));
 });

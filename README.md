@@ -14,9 +14,7 @@ Install dependencies
 ```
 $ pip install -r requirements.txt
 $ npm install --production
-
 ```
-
 Run the `app.py` script from the command line 
 
 ```
