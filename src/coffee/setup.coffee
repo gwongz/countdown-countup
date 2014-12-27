@@ -1,6 +1,6 @@
-$ = require 'jquery'
-$ -> 
-  console.log 'Jquery ready'
+# $ = require 'jquery'
+# $ -> 
+  # console.log 'Jquery ready'
 
   randomColor = ->
     colors = [

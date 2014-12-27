@@ -1,6 +1,10 @@
 React = require 'react'
-$ = require 'jquery'
 
+# $ = require 'jquery'
+
+(($) ->
+  
+) jQuery
 
 SetIntervalMixin = 
   componentWillMount: -> 
